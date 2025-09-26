@@ -51,7 +51,7 @@ We have implemented CI/CD with **GitHub Actions** and local Kubernetes deploymen
 
 ### Authentication
 
-- `GET /oidc/` → OIDC authentication endpoints (integrated with Keycloak)
+- `GET /oidc/authenticate` → OIDC authentication endpoints (integrated with Keycloak)
 
 ---
 
