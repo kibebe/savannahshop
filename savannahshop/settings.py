@@ -142,8 +142,8 @@ ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "")
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "")
 
 # settings.py
-OIDC_RP_CLIENT_ID = "django-backend"
-OIDC_RP_CLIENT_SECRET = "DgXpcmJ7lHtpO92cUwbPc0VbcaCVYTWq"
+OIDC_RP_CLIENT_ID = "django-client"
+OIDC_RP_CLIENT_SECRET = "i2qkomooBTiaurblYMKkFi1ekWHa72lb"
 OIDC_OP_AUTHORIZATION_ENDPOINT = "http://localhost:8080/realms/savannahshop/protocol/openid-connect/auth"
 OIDC_OP_TOKEN_ENDPOINT = "http://localhost:8080/realms/savannahshop/protocol/openid-connect/token"
 OIDC_OP_USER_ENDPOINT = "http://localhost:8080/realms/savannahshop/protocol/openid-connect/userinfo"

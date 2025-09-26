@@ -16,6 +16,78 @@ We have implemented CI/CD with **GitHub Actions** and local Kubernetes deploymen
 
 ---
 
+1. ### Start the Django Project
+
+## Run the project locally
+
+# Apply migrations
+
+python manage.py migrate
+
+# Create a Django superuser (will be linked to a Keycloak user)
+
+python manage.py createsuperuser
+
+### 2. Run Keycloak in Docker
+
+# Start a Keycloak container locally:
+
+docker run -d \
+ --name keycloak \
+ -p 8080:8080 \
+ -e KEYCLOAK_ADMIN=admin \
+ -e KEYCLOAK_ADMIN_PASSWORD=admin \
+ quay.io/keycloak/keycloak:23.0.4 start-dev
+
+Access the Keycloak admin console at:
+👉 http://localhost:8080/
+
+Login with:
+
+Username: admin
+Password: admin
+
+### 3. Create a Realm
+
+In the Keycloak admin console, create a new realm (e.g., savannahshop).
+
+4. Create a Client in Keycloak
+
+Inside the realm:
+
+Client ID: savannahshop-client
+
+Access Type: Confidential
+
+Root URL: http://localhost:8000/
+
+Valid Redirect URIs: http://localhost:8000/oidc/callback/\*
+
+Web Origins: http://localhost:8000
+
+Save the client and copy the Client Secret.
+Update settings.py:
+
+OIDC_RP_CLIENT_ID = "savannahshop-client"
+OIDC_RP_CLIENT_SECRET = "<your-client-secret>"
+
+5. Create a Keycloak User
+
+In the Keycloak realm, create a test user (e.g., testuser).
+
+Set a password under Credentials and disable Temporary.
+
+This user will authenticate with your Django app through OIDC.
+
+6. Run the Django App
+   python manage.py runserver
+
+Open: http://localhost:8000/oidc/authenticate/
+
+Login with your Keycloak user
+
+You’ll be redirected back to Django (/) and logged in 🎉
+
 ## 🌐 API Endpoints
 
 ### Root
