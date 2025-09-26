@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: savannahshop-postgres
+spec:
+  type: ClusterIP
+  selector:
+    app: savannahshop-postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

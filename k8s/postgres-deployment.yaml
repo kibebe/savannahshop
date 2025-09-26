@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: savannahshop-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: savannahshop-postgres
+  template:
+    metadata:
+      labels:
+        app: savannahshop-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:14
+          env:
+            - name: POSTGRES_DB
+              value: savannah_db
+            - name: POSTGRES_USER
+              value: savannah_user
+            - name: POSTGRES_PASSWORD
+              value: savannah_pass
+          ports:
+            - containerPort: 5432
